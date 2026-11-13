@@ -170,4 +170,13 @@ $('closeModal').onclick=()=>{$('notesModal').classList.remove('show');closeFileV
 $('search').addEventListener('input',e=>{let q=e.target.value.trim().toLowerCase();document.querySelectorAll('.topic').forEach(el=>el.classList.toggle('hidden',!!q&&!el.dataset.search.includes(q)));document.querySelectorAll('.chapter').forEach(el=>el.classList.toggle('hidden',!!q&&!el.querySelector('.topic:not(.hidden)')&&!el.dataset.search.includes(q)));document.querySelectorAll('.part').forEach(el=>el.classList.toggle('hidden',!!q&&!el.querySelector('.chapter:not(.hidden)')))});
 $('clearSearch').onclick=()=>{$('search').value='';document.querySelectorAll('.hidden').forEach(x=>x.classList.remove('hidden'))};
 (async()=>{await openDB();render()})();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(() => console.log("Service Worker Registered"))
+      .catch(error => console.error("Service Worker Error:", error));
+  });
+}
 </script></body></html>
